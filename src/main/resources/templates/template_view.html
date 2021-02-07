@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${set.getName()}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="/css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+
+<div class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+        <div class="relative py-3 sm:max-w-xl sm:mx-auto w-full">
+            <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                <div class="max-w-md mx-auto">
+                    <div id="finished" class="hidden">
+                        <div id="img" class="mx-auto my-12">
+                            <img src="img/finished.png">
+                        </div>
+                        <div class="text-center my-6">
+                            <div style="border: 1px dotted black; display: inline-block;" class="p-4">
+                                <p class="text-xl text-center"><b>Good job!</b></p>
+                                <p>You finished within <b id="time"></b></p>
+                                <p>You showed the answer <b id="answerShown"></b> times</p>
+                            </div>
+                        </div>
+                        <button id="start-over" class="shadow bg-blue-500 hover:bg-blue-400 w-full focus:shadow-outline
+                        focus:outline-none text-white font-bold py-2 px-4 rounded">Start over
+                        </button>
+                    </div>
+                    <div class="divide-y divide-gray-200" id="answer-input">
+                        <div class="py-32 text-base leading-6 space-y-4 text-center text-gray-700 sm:text-lg sm:leading-7">
+                            <h1 class="text-6xl" id="question"></h1>
+                        </div>
+                        <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+                            <input id="answer" type="text" autocomplete="off" placeholder="Answer"
+                                   class="bg-gray-200 text-center w-full appearance-none border-2 border-gray-200 rounded w-full
+                                   py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/quiz.js?v"></script>
+<script th:inline="javascript">
+    let questions = [[${set.getQuestions()}]];
+    let inOrder = [[${set.isInOrder()}]];
+    let strict = [[${set.isStrict()}]];
+
+    setupQuiz(questions, inOrder, strict);
+</script>
+
+</body>
+</html>

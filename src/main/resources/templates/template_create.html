@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study | Create new set</title>
+    <link href="/css/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="min-h-screen py-6 flex flex-col">
+        <div class="relative py-3 max-w-7xl sm:mx-auto w-full">
+            <div class="relative py-10 bg-white shadow-lg sm:rounded-3xl">
+                <div class="mx-auto max-w-5xl text-center">
+                    <div class="text-base leading-6 mb-10 text-center text-gray-700 sm:text-lg sm:leading-7">
+                        <h1 class="text-6xl">Create set</h1>
+                    </div>
+
+                    <div id="creationInfo" class="text-4xl hidden">
+                        <p class="mb-4">
+                            Successfully created with the name
+                            <b id="creation_setName"></b>
+                        </p>
+                        <div class="text-xl">
+                            <p>
+                                Link to study:
+                                <a id="creation_studyUrl" target="_blank"></a>
+                            </p>
+                            <p>
+                                Link to edit (Must be saved to make changes later):
+                                <a id="creation_editUrl" target="_blank"></a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <form id="creationForm" autocomplete="off" class="mt-8">
+                        <input name="name" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-2/4
+                                    py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                               type="text" placeholder="Name" required><br>
+
+                        <input type='hidden' value='0' name='strict'>
+                        <input type='hidden' value='0' name='inOrder'>
+
+                        <div class="mt-6">
+                            <p class="text-xl">Additional options</p>
+                            <label>
+                                Strict check (capitalization)
+                                <input type="checkbox" name="strict" class="ml-3 py-2 px-2" checked>
+                            </label><br>
+                            <label>
+                                Show in order
+                                <input type="checkbox" name="inOrder" class="ml-3 py-2 px-2">
+                            </label>
+                        </div>
+
+                        <div id="items" class="mt-8">
+                            <div class="md:flex md:items-center mb-6">
+                                <input name="question_term0" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2
+                                px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mx-2"
+                                       type="text" placeholder="Term / Question">
+                                <input name="question_definition0" class="lastField bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full
+                                py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mx-2"
+                                       type="text" placeholder="Answer">
+                            </div>
+                        </div>
+
+                        <input class="shadow bg-blue-500 hover:bg-blue-400 w-full focus:shadow-outline focus:outline-none text-white font-bold
+                        py-2 px-4 rounded" type="submit" value="Create study set">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/editor.js"></script>
+<script src="js/create.js"></script>
+
+</body>
+</html>

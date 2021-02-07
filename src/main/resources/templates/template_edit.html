@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Study | Edit ' + ${set.getName()}"></title>
+    <link href="/css/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="min-h-screen py-6 flex flex-col">
+        <div class="relative py-3 max-w-7xl sm:mx-auto w-full">
+            <div class="relative py-10 bg-white shadow-lg sm:rounded-3xl">
+                <div class="mx-auto max-w-5xl text-center">
+                    <div class="text-base leading-6 mb-10 text-center text-gray-700 sm:text-lg sm:leading-7">
+                        <h1 class="text-6xl">Edit set</h1>
+                        <a class="mt-2 block" th:href="${studyUrl}">Go to study view</a>
+                    </div>
+
+                    <form id="editForm" autocomplete="off" class="mt-8">
+                        <input name="name" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-2/4
+                                py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                               type="text" placeholder="Name" th:value="${set.getName()}" required><br>
+
+                        <input id="editToken" type='hidden' th:value="${set.getEditToken()}">
+                        <input type='hidden' value='0' name='strict'>
+                        <input type='hidden' value='0' name='inOrder'>
+
+                        <div class="mt-6">
+                            <p class="text-xl">Additional options</p>
+                            <label>
+                                Strict check (capitalization)
+                                <input type="checkbox" name="strict" class="ml-3 py-2 px-2" th:checked="${set.isStrict()}">
+                            </label><br>
+                            <label>
+                                Show in order
+                                <input type="checkbox" name="inOrder" class="ml-3 py-2 px-2" th:checked="${set.isInOrder()}">
+                            </label>
+                        </div>
+
+                        <div id="items" class="mt-8">
+                            <th:block th:each="i : ${#numbers.sequence(0, set.getQuestions().size() - 1)}">
+                                <div class="md:flex md:items-center mb-6" th:with="question=${set.getQuestions().get(i)}">
+                                    <input th:name="'question_term' + ${i}" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2
+                                    px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mx-2"
+                                           type="text" placeholder="Term / Question" th:value="${question.getTerm()}">
+                                    <input th:name="'question_definition' + ${i}" th:class="(${i == set.getQuestions().size() - 1}? 'lastField ' : '') +
+                                    'bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight' +
+                                    ' focus:outline-none focus:bg-white focus:border-blue-500 mx-2'"
+                                           type="text" placeholder="Answer" th:value="${question.getDefinition()}">
+                                </div>
+                            </th:block>
+                        </div>
+
+                        <input class="shadow bg-blue-500 hover:bg-blue-400 w-full focus:shadow-outline focus:outline-none text-white font-bold
+                        py-2 px-4 rounded" type="submit" value="Save changes">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/editor.js"></script>
+<script src="/js/edit.js"></script>
+
+</body>
+</html>

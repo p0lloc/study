@@ -1,0 +1,21 @@
+body {
+    background-color: #104E8B;
+    background-size: cover !important;
+}
+
+a {
+    color: #104E8B;
+}
+
+input[type=checkbox]{
+    transform: scale(1.5);
+}
+
+input[type=submit]{
+    cursor: pointer;
+}
+
+#finished img, #finished img {
+    width: 200px;
+    height: 200px;
+}
